@@ -147,7 +147,7 @@ beatsviz.viz.bcnRT =  function (options)
                                         return (self.scaleType("bicing"));
                                     });
 
-                        self.points.append("title").text(function(d,j){return self.dataPoints[j].data.stationName+" - "+self.dataPoints[j].data.slots.free+" plazas libres";});
+                        self.points.append("title").text(function(d,j){return self.dataPoints[j].data.stationName+" - "+self.dataPoints[j].data.slots.free+" free slots";});
 
                         self.points.transition().duration(self.transTime)
                         .attr("r", function(d,j){var scale= self.sizeScale['bicing'];var point = self.dataPoints[j]; return Math.floor(scale(point.data.slots.occupation))});

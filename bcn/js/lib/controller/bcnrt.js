@@ -17,9 +17,9 @@ beatsviz.controller.bcnRT = function(options)
     // Copies
 
 
-    self.footerInfo = "Citybeats is a project aimed at displaying world cities 'pulses' through real-time net information."+
+    self.footerInfo = "Citybeats is a project aimed at displaying world cities 'pulses' through real-time net information." +'<a href="http://outliers.es/2013/05/citybeats" target="_blank"> You can find more info here </a>'+
         ' | This project was born at <a href="http://bcnproject.com/" target="_blank">'+'Catalunya Dades Weekend hackaton</a> in the context of '+
-        '<a href="http://bigdataweek.com/" target="_blank">Big Data Week 2013</a> | <a href="http://outliers.es/2013/05/citybeats" target="_blank">More info here</a>';
+        '<a href="http://bigdataweek.com/" target="_blank">Big Data Week 2013</a> ';
 
 
     // Pongo lo que me venga por opciones en el self
@@ -55,7 +55,7 @@ beatsviz.controller.bcnRT = function(options)
         var injectString =
             ['<div id="contenedorTodo" class="wrapper">',
                 '<header>',
-                  '<h1>BCN.citybeats - <span class="opcionesContent" id="showTime">----/--/-- | --:--:--</span></h1>',
+                  '<h1>BCN.citybeats - <span class="opcionesContent" id="showTime">----/--/-- | --:--:--</span><span class="opcionesContent"> - Mouseover elements for more info</span></h1>',
                   '<div class="selector-holder"><h4>Choose Source:</h4> <select id="dataset" style="width:100px;">',
                     '<option value="all" selected>all</option>',
                     '<option value="bicing">bicing</option>',
