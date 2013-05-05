@@ -1,8 +1,8 @@
 
-var tdviz = tdviz || {'version':0.1, 'controller':{}, 'viz': {} ,'extras': {} };
+var beatsviz = beatsviz || {'version':0.1, 'controller':{}, 'viz': {} ,'extras': {} };
 
 
-tdviz.controller.bcnRT = function(options)
+beatsviz.controller.bcnRT = function(options)
 {
 
     // Referencia a esta instancia
@@ -16,9 +16,10 @@ tdviz.controller.bcnRT = function(options)
 
     // Copies
 
-    var INTRO_TEXT = "BCN RealTime is a blah blah";
 
-    self.footerInfo = "Footer";
+    self.footerInfo = "Citybeats is a project aimed at displaying world cities 'pulses' through real-time net information."+
+        ' | This project was born at <a href="http://bcnproject.com/" target="_blank">'+'Catalunya Dades Weekend hackaton</a> in the context of '+
+        '<a href="http://bigdataweek.com/" target="_blank">Big Data Week 2013</a> | <a href="http://outliers.es/2013/05/citybeats" target="_blank">More info here</a>';
 
 
     // Pongo lo que me venga por opciones en el self
@@ -71,7 +72,7 @@ tdviz.controller.bcnRT = function(options)
                       '<div id="legendContent" class="legendContent"></div>',
                     '</div>',
                 '</div>',
-                '<footer id="footer" class="footer"><p>'+self.footerInfo+' / Credits</p></footer>',
+                '<footer id="footer" class="footer"><p>'+self.footerInfo+'</p></footer>',
              '</div>'
             ].join('\n');
 
@@ -83,7 +84,7 @@ tdviz.controller.bcnRT = function(options)
 
         // Instancio el objeto networkChart
 
-        self.bcnChart = tdviz.viz.bcnRT(
+        self.bcnChart = beatsviz.viz.bcnRT(
             {
                 'visTitle':"BCN beats",
                 'idName':"chartContent",
@@ -106,10 +107,9 @@ tdviz.controller.bcnRT = function(options)
            {
                self.netData = netData;
 
-               console.log("DATOS!!!!");
-               console.log(self.netData);
 
-               // primer render de la red
+
+               // primer render
 
                self.bcnChart.render(self.netData,self.dataIn);
 
@@ -120,7 +120,6 @@ tdviz.controller.bcnRT = function(options)
 
                    self.dataIn = this.value;
 
-                   console.log("change");
 
                    self.bcnChart.render(self.netData,self.dataIn);
 
@@ -137,10 +136,7 @@ tdviz.controller.bcnRT = function(options)
                                 {
                                            self.netData = netData;
 
-                                           console.log("DATOS REFRESH!!!!");
-                                           console.log(self.netData);
-
-                                           // primer render de la red
+                                           // primer render
 
                                            self.bcnChart.render(self.netData,self.dataIn);
 

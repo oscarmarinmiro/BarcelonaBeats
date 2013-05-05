@@ -1,6 +1,7 @@
-var tdviz = tdviz || {'version':0.1, 'controller':{}, 'viz': {} ,'extras': {} };
+var beatsviz = beatsviz || {'version':0.1, 'controller':{}, 'viz': {} ,'extras': {} };
 
-tdviz.viz.bcnRT =  function (options)
+
+beatsviz.viz.bcnRT =  function (options)
 {
 
     // Object
@@ -13,6 +14,7 @@ tdviz.viz.bcnRT =  function (options)
     // Corsega/S.Juan: 41.40189,2.166324
 
     self.originLatitude = 41.40189;
+	self.originLongitude = 2.166324;
 	self.originLongitude = 2.166324;
 
     // Get options data
@@ -101,15 +103,10 @@ tdviz.viz.bcnRT =  function (options)
 
     self.render = function(data,dataIn)
     {
-        console.log("REFRESHHHHHHHCANDO");
-        console.log("En el render....");
 
         self.data = data;
 
         self.dataIn = dataIn;
-
-//        d3.selectAll(".circleDraw").transition().duration(self.transTime).style("opacity",0.1).attr("r",0).remove();
-//        d3.selectAll(".lineDraw").transition().duration(self.transTime).style("opacity",0.1).attr("r",0).remove();
 
 
         d3.selectAll(".circleDraw").remove();
@@ -117,8 +114,6 @@ tdviz.viz.bcnRT =  function (options)
 
         if(self.dataIn=='bicing' || self.dataIn=='all')
         {
-
-            console.log("BICING");
 
             self.drawPoints = [];
             self.dataPoints = [];
@@ -147,7 +142,6 @@ tdviz.viz.bcnRT =  function (options)
                                     })
                         .attr("r",0)
                         .style("opacity",0.7)
-                        .style("stroke","#AAA")
                         .attr("class","circleDraw bicing")
                          .style("fill", function(d, j) {
                                         return (self.scaleType("bicing"));
@@ -161,14 +155,11 @@ tdviz.viz.bcnRT =  function (options)
 
                 }
             }
-            console.log(self.drawPoints.length);
 
         }
 
         if(self.dataIn=='twitter' || self.dataIn=='all')
         {
-
-            console.log("TWITTER");
 
             self.drawPoints = [];
             self.dataPoints = [];
@@ -180,7 +171,6 @@ tdviz.viz.bcnRT =  function (options)
 
                 if(point.type=='twitter')
                 {
-                    console.log(point);
 
                     self.drawPoints.push(self.projection([point.geo.info.lng, point.geo.info.lat]));
                     self.dataPoints.push(point);
@@ -198,7 +188,6 @@ tdviz.viz.bcnRT =  function (options)
                                     })
                         .attr("r",0)
                         .style("opacity",0.7)
-                        .style("stroke","#AAA")
                         .attr("class","circleDraw twitter")
                          .style("fill", function(d, j) {
                                         return (self.scaleType("twitter"));
@@ -212,7 +201,6 @@ tdviz.viz.bcnRT =  function (options)
 
                 }
             }
-            console.log(self.drawPoints.length);
 
         }
 
@@ -221,7 +209,6 @@ tdviz.viz.bcnRT =  function (options)
 
         if(self.dataIn=='foursquare' || self.dataIn=='all')
         {
-            console.log("FOURSQUARE");
 
             self.drawPoints = [];
             self.dataPoints = [];
@@ -233,11 +220,6 @@ tdviz.viz.bcnRT =  function (options)
 
                 if(point.type=='foursquare')
                 {
-//                    console.log("TRANSTIME");
-//                    console.log(self.transTime);
-//                    console.log("FQ POINT");
-//                    console.log(self.data[i]);
-
                     self.drawPoints.push(self.projection([point.geo.info.lng, point.geo.info.lat]));
                     self.dataPoints.push(point);
 
@@ -252,7 +234,6 @@ tdviz.viz.bcnRT =  function (options)
                                     })
                         .attr("r",0)
                         .style("opacity",0.7)
-                        .style("stroke","#AAA")
                         .attr("class","circleDraw foursquare")
                          .style("fill", function(d, j) {
                                         return (self.scaleType("foursquare"));
@@ -271,7 +252,6 @@ tdviz.viz.bcnRT =  function (options)
 
        if(self.dataIn=='instagram' || self.dataIn=='all')
         {
-            console.log("INSTAGRAM");
 
             self.drawPoints = [];
             self.dataPoints = [];
@@ -299,14 +279,12 @@ tdviz.viz.bcnRT =  function (options)
                                     })
                         .attr("r",0)
                         .style("opacity",0.7)
-                        .style("stroke","#AAA")
                         .attr("class","circleDraw instagram")
                          .style("fill", function(d, j) {
                                         return (self.scaleType("instagram"));
                                     });
 
                         self.points
-//                        .on("click",function(d,i){console.log(self.dataPoints[j]);alert(self.dataPoints[j].data.images.standar_resolution.link)});
                         .on("click",function(d,i){window.open(d.data.link, '_blank');window.focus();});
 
                         self.points.append("title").text(function(d,j){
@@ -329,7 +307,6 @@ tdviz.viz.bcnRT =  function (options)
 
         if(self.dataIn=='traffic' || self.dataIn=='all')
         {
-            console.log("TRAFFIC");
 
             self.drawLines = [];
             self.dataLines = [];
@@ -342,7 +319,6 @@ tdviz.viz.bcnRT =  function (options)
 
                 if(point.type=='traffic')
                 {
-                    console.log("TRAFFIC");
 
                     var polygon = point.geo.info;
 
@@ -353,36 +329,10 @@ tdviz.viz.bcnRT =  function (options)
                         self.dataLines.push({'first':self.projection([polygon[j][0], polygon[j][1]]),'second':self.projection([polygon[j+1][0], polygon[j+1][1]]),'now':point.data.now});
                     }
 
-//                    self.drawPoints.push(self.projection([point.geo.info.lng, point.geo.info.lat]));
-//                    self.dataPoints.push(point);
-//
-//                    self.points = self.svg.selectAll("g")
-//                                .data(self.dataPoints)
-//                                .enter().append("svg:circle")
-//                                    .attr("cx", function(d,j) {
-//                                            return self.drawPoints[j][0];
-//                                    })
-//                                    .attr("cy", function(d,j) {
-//                                            return self.drawPoints[j][1];
-//                                    })
-//                        .attr("r",0)
-//                        .attr("class","circleDraw")
-//                        .style("opacity",0)
-//                         .attr("fill", function(d, j) {
-//                                        return (self.scaleType("foursquare"));
-//                                    });
-//
-//                                        self.points.append("title").text(function(d,j){return self.dataPoints[j].data.name + " - " + self.dataPoints[j].data.checkins+" checkins"});
-//
-//                        self.points.transition().duration(self.transTime)
-//                        .style("opacity",1)
-//                        .attr("r", function(d,j){var scale= self.sizeScale['foursquare'];var point = self.dataPoints[j]; return scale(point.data.checkins)});
-//
 
                 }
             }
 
-            //console.log(self.dataLines);
 
 
             self.lines = self.svg.selectAll("g")
