@@ -17,9 +17,19 @@ beatsviz.controller.bcnRT = function(options)
     // Copies
 
 
-    self.footerInfo = "Citybeats is a project aimed at displaying world cities 'pulses' through real-time net information." +'<a href="http://outliers.es/2013/05/citybeats" target="_blank"> You can find more info here </a>'+
-        ' | This project was born at <a href="http://bcnproject.com/" target="_blank">'+'Catalunya Dades Weekend hackaton</a> in the context of '+
-        '<a href="http://bigdataweek.com/" target="_blank">Big Data Week 2013</a> ';
+
+
+
+    self.footerInfo= '<!-- AddThis Button BEGIN -->'+
+		'<div class="addthis_toolbox addthis_default_style " style="padding:5px 0px 0px 0px">'+
+			'<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>'+
+			'<a class="addthis_button_tweet"></a>'+
+			'<a class="addthis_counter addthis_pill_style"></a>'+
+		'</div>'+
+		'<script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>'+
+		'<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ff19d7370b136b3"></script>'+
+		'<!-- AddThis Button END -->';
+
 
 
     // Pongo lo que me venga por opciones en el self
@@ -55,7 +65,7 @@ beatsviz.controller.bcnRT = function(options)
         var injectString =
             ['<div id="contenedorTodo" class="wrapper">',
                 '<header>',
-                  '<h1>BCN.citybeats - <span class="opcionesContent" id="showTime">----/--/-- | --:--:--</span><span class="opcionesContent"> - Mouseover elements for more info</span></h1>',
+                  '<h1>BCN.citybeats - <span class="opcionesContent" id="showTime">----/--/-- | --:--:--</span><span class="opcionesContent"> - Mouseover elements for more info - For a full project description click <a href="http://outliers.es/en/2013/05/bcnbeats" target="_blank"> here</a></span></h1>',
                   '<div class="selector-holder"><h4>Choose Source:</h4> <select id="dataset" style="width:100px;">',
                     '<option value="all" selected>all</option>',
                     '<option value="bicing">bicing</option>',
