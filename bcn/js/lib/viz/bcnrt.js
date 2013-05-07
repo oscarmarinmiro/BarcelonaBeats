@@ -45,7 +45,7 @@ beatsviz.viz.bcnRT =  function (options)
 	    self.projection = d3.geo.mercator()
             .rotate([(0 - self.originLongitude), (0 - self.originLatitude), -45])
             .scale(448500)
-            .translate([self.width/2 + 7, self.height/2]);
+            .translate([self.width/2 + 7, self.height/2 + 8 ]);
 
 	    self.path = d3.geo.path()
 	       .projection(self.projection);
