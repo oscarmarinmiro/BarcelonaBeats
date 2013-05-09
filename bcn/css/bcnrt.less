@@ -123,12 +123,17 @@ body {
         }
         .chartContent {
             .square(100%);
-            background: #333 url(../img/bcn_back_map.png) no-repeat 50% 50%;
-            .background-clip(border-box);
             position: absolute;
             top: 0;
             left: 0;
+            background-color: @grayDark;
             overflow: hidden;
+            .svg-projection {
+                path {
+                    fill: none;
+                    stroke: @grayDarker;
+                }
+            }
         }
         .zonaInfo {
             position: absolute;

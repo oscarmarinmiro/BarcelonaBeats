@@ -1,8 +1,7 @@
 var beatsviz = beatsviz || {'version':0.1, 'controller':{}, 'viz': {} ,'extras': {} };
 
 
-beatsviz.viz.bcnRT =  function (options)
-{
+beatsviz.viz.bcnRT =  function (options) {
 
     // Object
 
@@ -15,7 +14,6 @@ beatsviz.viz.bcnRT =  function (options)
 
     self.originLatitude = 41.40189;
 	self.originLongitude = 2.166324;
-	self.originLongitude = 2.166324;
 
     // Get options data
 
@@ -25,10 +23,11 @@ beatsviz.viz.bcnRT =  function (options)
 
     self.parentSelect = "#"+self.idName;
 
-    self.init = function()
-    {
+    self.init = function() {
 
-
+        // Load topojson bcn file
+        d3.json("data/bcn.json", function(error, bcn) {
+        
         // svg init
 
         self.myLog("Iniciando network diagram... en ",3);
@@ -36,95 +35,84 @@ beatsviz.viz.bcnRT =  function (options)
         self.svg = d3.select(self.parentSelect).append("svg")
             .attr("width",self.width)
             .attr("height",self.height)
+            .attr("class", "svg-projection")
             .call(d3.behavior.zoom().on("zoom", self.redraw))
             .append("g");
 
         // projection and path info
 
+            self.streets = topojson.feature(bcn, bcn.objects.bcn_streets);
 
-	    self.projection = d3.geo.mercator()
-            .rotate([(0 - self.originLongitude), (0 - self.originLatitude), -45])
-            .scale(448500)
-            .translate([self.width/2 + 7, self.height/2 + 8 ]);
+    	    self.projection = d3.geo.mercator()
+                .rotate([(0 - self.originLongitude), (0 - self.originLatitude), -45])
+                .scale(448500)
+                .translate([self.width/2, self.height/2]);
+    
+    	    self.path = d3.geo.path()
+    	       .projection(self.projection);
 
-	    self.path = d3.geo.path()
-	       .projection(self.projection);
+            self.svg.append("path")
+                .datum(self.streets)
+                .attr("d", self.path);
+        
 
-        var leftDisplacement = self.width/2 + 215;
-        var topDisplacement = self.height/2 + 88;
+            self.bcnLatlong = [];
+    	    self.bcnPoints = [];
 
-        self.bcnLatlong = [];
-	    self.bcnPoints = [];
+            self.legendSVG = d3.select("#"+self.legendId).append("svg")
+                .attr("width",100)
+                .attr("height",150)
+                .append("g");
 
-	    self.markPointEspanya = [];
-	    self.markPointGlories = [];
+            // Key
 
+            for (var i in self.scaleType.domain()) {
 
-        self.legendSVG = d3.select("#"+self.legendId).append("svg")
-            .attr("width",100)
-            .attr("height",150)
-            .append("g");
+                var company = self.scaleType.domain()[i];
 
+                self.legendSVG
+                    .append("circle")
+                    .attr("class","legendNodes")
+                    .style("fill",self.scaleType(company))
+                    .attr("cx",10)
+                    .attr("cy",30+(i*25))
+                    .attr("r",5);
 
-        for (var i in self.scaleType.domain())
-        {
+                self.legendSVG
+                    .append("text")
+                    .attr("class","legendTexts")
+                    .attr("x",20)
+                    .attr("y",34+(i*25))
+                    .text(company);
+            }
 
-            var company = self.scaleType.domain()[i];
+            // warning message
 
-
-            self.legendSVG
-                .append("circle")
-                .attr("class","legendNodes")
-                .style("fill",self.scaleType(company))
-                .attr("cx",10)
-                .attr("cy",30+(i*25))
-                .attr("r",5);
-
-            self.legendSVG
-                .append("text")
-                .attr("class","legendTexts")
-                .attr("x",20)
-                .attr("y",34+(i*25))
-                .text(company);
-        }
-
-        // warning message
-
-        self.warningMessage = self.svg.append("text")
-            .attr("text-anchor", "middle")
-            .attr("class","netChartTextWarning")
-            .attr("x", self.width/2)
-            .attr("y",self.height/2)
-            .text(self.loadingMessage);
-
-
-
+            self.warningMessage = self.svg.append("text")
+                .attr("text-anchor", "middle")
+                .attr("class","netChartTextWarning")
+                .attr("x", self.width/2)
+                .attr("y",self.height/2)
+                .text(self.loadingMessage);
+        });
     }
-
-    self.render = function(data,dataIn)
-    {
+    self.render = function(data,dataIn) {
 
         self.data = data;
-
         self.dataIn = dataIn;
-
 
         d3.selectAll(".circleDraw").remove();
         d3.selectAll(".lineDraw").remove();
 
-        if(self.dataIn=='bicing' || self.dataIn=='all')
-        {
+        if(self.dataIn=='bicing' || self.dataIn=='all') {
 
             self.drawPoints = [];
             self.dataPoints = [];
 
-
-            for(var i in self.data)
-            {
+            for(var i in self.data) {
                 var point = self.data[i];
 
-                if(point.type=='bicing')
-                {
+                if(point.type=='bicing') {
 
                     self.drawPoints.push(self.projection([point.geo.info.lng, point.geo.info.lat]));
                     self.dataPoints.push(point);

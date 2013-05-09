@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+/* CSS goes here. */
+path {
+	fill: none;
+	stroke: #CCC;
+}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script>
+
+/* JavaScript goes here. */
+
+var width = 1024,
+    height = 768;
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var originLatitude = 41.40189;
+var originLongitude = 2.166324;
+
+d3.json("data/bcn.json", function(error, bcn) {
+  console.log(bcn);
+  // svg.append("path")
+  //     .datum(topojson.feature(bcn, bcn.objects.bcn_streets))
+  //     .attr("d", d3.geo.path().projection(d3.geo.mercator()));
+
+	var streets = topojson.feature(bcn, bcn.objects.bcn_streets);
+
+	var projection = d3.geo.mercator()
+		.rotate([(0 - originLongitude), (0 - originLatitude), -45])
+		.scale(448500)
+		.translate([width / 2, height / 2]);
+
+	var path = d3.geo.path()
+	    .projection(projection);
+
+	svg.append("path")
+		.datum(streets)
+		.attr("d", path);
+
+});
+
+</script>
