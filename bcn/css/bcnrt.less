@@ -1,6 +1,11 @@
 @import 'variables.less';
 @import 'mixins.less';
 @import '../components/select2/select2.css';
+@import '../components/bootstrap/less/type.less';
+@import '../components/bootstrap/less/layouts.less';
+@import '../components/bootstrap/less/buttons.less';
+@import '../components/bootstrap/less/close.less';
+@import '../components/bootstrap/less/modals.less';
 
 /* Reseter */
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -128,10 +133,50 @@ body {
             left: 0;
             background-color: @grayDark;
             overflow: hidden;
-            .svg-projection {
-                path {
-                    fill: none;
-                    stroke: @grayDarker;
+            svg {
+                position: absolute;
+                top: 0;
+                &.svg-voronoi {
+                    path {
+                        stroke: @grayDark;
+                        stroke-width: 0;
+                        stroke: @white;
+                        .opacity(50);
+                    }
+                }
+                &.svg-sea {
+                    pointer-events: none;
+                    .mask-sea {
+                        fill: @grayDarker;
+                    }
+                    .mask-land {
+                        fill: @grayDark;
+                    }
+                }
+                &.svg-projection {
+                    pointer-events: none;
+                    path {
+                        fill: none;
+                        stroke: @white;
+                    }
+                }
+                &.svg-data {
+                    .bcn-streets {
+                        fill: none;
+                        stroke: @grayDarker;
+                    }
+                    .bicing-areas {
+                        stroke: @grayDark;
+                        stroke-width: 0;
+                        stroke: @white;
+                        .opacity(50);
+                    }
+                    .mask-sea {
+                        fill: @grayDarker;
+                    }
+                    .mask-land {
+                        fill: @grayDark;
+                    }
                 }
             }
         }
@@ -165,6 +210,7 @@ body {
         }
     }
 }
+
 .select2-drop {
     border: none;
     .border-radius(0px);
@@ -179,6 +225,73 @@ body {
         }
         .select2-highlighted {
             background: @grayDark;
+        }
+    }
+}
+.d3-tip {
+    position: relative;
+    z-index: 999;
+    padding: 0px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    &:after{
+        position: absolute;
+        .box-sizing(border-box);
+        width: 100%;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.8);
+        content: "\25BC";
+        text-align: center;
+    }
+    &.n {
+        &:after {
+            margin: -4px 0 0 0;
+            top: 100%;
+            left: 0;
+        }
+    }
+    h4 {
+        padding: 5px;
+        max-width: 150px;
+        .text-overflow();
+        #font > .serif(11px, 700, 1.5em);
+        &.twitter-header {
+            background-color: @blue;
+        }
+        &.foursquare-header {
+            background-color: @foursquare;
+            color: @black;
+        }
+        &.bicing-header {
+            background-color: @pink;
+        }
+    }
+    p {
+        padding: 5px;
+        max-width: 150px;
+        #font > .sans-serif(11px, 300, 1.5em);
+        &.foursquare-info {
+            text-align: center;
+            span {
+                display: block;
+                #font > .serif(18px, 700, 1.5em);
+            }
+        }
+    }
+    ul {
+        padding: 5px; 
+        max-width: 150px;
+        .clearfix();
+        &.bicing-info {
+            li {
+                text-align: center;
+                float: left;
+                width: 50%;
+                span {
+                    display: block;
+                    #font > .serif(18px, 700, 1.5em);
+                }
+            }
         }
     }
 }

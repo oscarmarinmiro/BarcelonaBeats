@@ -1,0 +1,9 @@
+{
+  "name": "d3-plugins",
+  "version": "0.0.0",
+  "commit": "42102dcc0142d3025295740dcdb71999f216a71a",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/d3/d3-plugins.git"
+  }
+}
