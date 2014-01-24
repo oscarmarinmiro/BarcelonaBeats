@@ -1,0 +1,24 @@
+import requests
+import json
+import time
+from datetime import datetime
+
+from datastore import DataStore
+from utils import format_exception
+
+def instagram(datastore):
+    try:
+        data = json.loads(requests.get('http://www.felixcasanellas.com/bdw/inst/').content)
+        for item in data:
+            item['timestamp'] = datetime.utcnow()
+            item['type'] = 'instagram'
+        datastore.insert(data)
+    except Exception as e:
+        print format_exception(e)
+
+if __name__ == '__main__':
+    datastore = DataStore()
+    while True:
+        instagram(datastore)
+        time.sleep(60)
+
