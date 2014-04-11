@@ -22,6 +22,9 @@ TRAFFIC_SLEEP_TIME = 900
 TWITTER_API_CALL = 'http://search.twitter.com/search.json'
 TWITTER_PLACE_ID = 'f3e29c4c744f3625'
 TWITTER_SLEEP_TIME = 1500
+BCN_LAT = '41.3972963'
+BCN_LON = '2.1618974'
+BCN_RADIUS = '20km'
 
 # Instagram
 INSTAGRAM_API_CALL = 'https://api.instagram.com/v1/media/search'
