@@ -11,8 +11,8 @@ case "$1" in
         echo $! > pids/bicing.pid
         nohup python -u itgr.py >logs/instagram.log 2>&1 &
         echo $! > pids/instagram.pid
-        nohup python -u twitter.py >logs/twitter.log 2>&1 &
-        echo $! > pids/twitter.pid
+#        nohup python -u twitter.py >logs/twitter.log 2>&1 &
+#        echo $! > pids/twitter.pid
 #        nohup python -u bambuser.py >logs/bambuser.log 2>&1 &
 #        echo $! > pids/bambuser.pid
     ;;

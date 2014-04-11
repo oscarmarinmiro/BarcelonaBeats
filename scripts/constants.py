@@ -1,6 +1,6 @@
 # Bicing
 BICING_INTERNAL_API_CALL = 'https://www.bicing.cat/es/formmap/getJsonObject'
-BICING_SLEEP_TIME = 1500
+BICING_SLEEP_TIME = 900
 
 # Foursquare
 FSQ_TRENDING_VENUES_API_CALL = 'https://api.foursquare.com/v2/venues/trending'
@@ -12,11 +12,11 @@ MAX_BCN_LAT = 41.312113
 MAX_BCN_LNG = 2.23772
 LAT_DELTA = (MAX_BCN_LAT - MIN_BCN_LAT) / 4
 LNG_DELTA = (MAX_BCN_LNG - MIN_BCN_LNG) / 4
-FSQ_SLEEP_TIME = 1500
+FSQ_SLEEP_TIME = 900
 
 # Traffic
 TRAFFIC_TRAMOS_FILE = 'data/tramos.json'
-TRAFFIC_SLEEP_TIME = 1500
+TRAFFIC_SLEEP_TIME = 900
 
 # Twitter
 TWITTER_API_CALL = 'http://search.twitter.com/search.json'
