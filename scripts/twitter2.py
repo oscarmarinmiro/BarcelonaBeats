@@ -24,8 +24,9 @@ def get_twitter_data(since_id):
     try:
         twitter = Twython(APP_KEY, APP_SECRET,
                       OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-        geocode = '%s%s%s' % (BCN_LAT,BCN_LON,BCN_RADIUS)
-        params = {'q':'el', 'count': 100, 'geocode':geocode}
+        geocode = '%s,%s,%s' % (BCN_LAT,BCN_LON,BCN_RADIUS)
+        print geocode
+        params = {'q':'', 'count': 100, 'geocode':geocode}
         if since_id is not None:
             params['since_id'] = since_id
         data = twitter.search(**params)
@@ -51,12 +52,14 @@ def format_twitter_data(raw):
 
 def twitter(datastore, since_id):
     (data, since_id) = get_twitter_data(since_id)
-    datastore.insert(format_twitter_data(data))
+    #datastore.insert(format_twitter_data(data))
+    print format_twitter_data(data)
     return since_id
 
 if __name__ == '__main__':
     since_id = None
-    datastore = DataStore()
+    #datastore = DataStore()
+    datastore=""
     while True:
         since_id = twitter(datastore, since_id)
         time.sleep(TWITTER_SLEEP_TIME)
