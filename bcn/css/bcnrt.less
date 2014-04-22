@@ -67,6 +67,8 @@ body {
     padding: 0;
     margin: 0;
     background-color: @black;
+    overflow: hidden;
+    overflow-y: auto;
     * {
         .box-sizing(border-box);
     }
@@ -131,7 +133,7 @@ body {
             position: absolute;
             top: 0;
             left: 0;
-            background-color: @grayDark;
+            background-color: #DED4B9;
             overflow: hidden;
             svg {
                 position: absolute;
@@ -141,41 +143,41 @@ body {
                         stroke: @grayDark;
                         stroke-width: 0;
                         stroke: @white;
-                        .opacity(50);
+                        //.opacity(10);
                     }
                 }
                 &.svg-sea {
                     pointer-events: none;
                     .mask-sea {
-                        fill: @grayDarker;
+                        fill: #000;
                     }
                     .mask-land {
-                        fill: @grayDark;
+                        fill: #46433A;
                     }
                 }
                 &.svg-projection {
                     pointer-events: none;
                     path {
                         fill: none;
-                        stroke: @white;
+                        stroke: #46433A;
                     }
                 }
                 &.svg-data {
                     .bcn-streets {
                         fill: none;
-                        stroke: @grayDarker;
+                        stroke: #000;
                     }
                     .bicing-areas {
                         stroke: @grayDark;
                         stroke-width: 0;
                         stroke: @white;
-                        .opacity(50);
+                        .opacity(40);
                     }
                     .mask-sea {
-                        fill: @grayDarker;
+                        fill: #333;
                     }
                     .mask-land {
-                        fill: @grayDark;
+                        fill: #46433A;
                     }
                 }
             }

@@ -183,7 +183,6 @@ ol.inline > li {
   display: inline-block;
   *display: inline;
   /* IE7 inline-block hack */
-
   *zoom: 1;
   padding-left: 5px;
   padding-right: 5px;
@@ -320,7 +319,6 @@ address {
   display: inline-block;
   *display: inline;
   /* IE7 inline-block hack */
-
   *zoom: 1;
   padding: 4px 12px;
   margin-bottom: 0;
@@ -343,7 +341,6 @@ address {
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   *background-color: #d9d9d9;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   border: 1px solid #cccccc;
   *border: 0;
@@ -479,7 +476,6 @@ input[type="button"].btn-block {
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   *background-color: #0044cc;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn-primary:hover,
@@ -511,7 +507,6 @@ input[type="button"].btn-block {
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   *background-color: #f89406;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn-warning:hover,
@@ -543,7 +538,6 @@ input[type="button"].btn-block {
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   *background-color: #bd362f;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn-danger:hover,
@@ -575,7 +569,6 @@ input[type="button"].btn-block {
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   *background-color: #51a351;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn-success:hover,
@@ -607,7 +600,6 @@ input[type="button"].btn-block {
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   *background-color: #2f96b4;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn-info:hover,
@@ -639,7 +631,6 @@ input[type="button"].btn-block {
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   *background-color: #222222;
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .btn-inverse:hover,
@@ -763,7 +754,6 @@ button.close {
   border: 1px solid rgba(0, 0, 0, 0.3);
   *border: 1px solid #999;
   /* IE6-7 */
-
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
@@ -980,6 +970,8 @@ body {
   padding: 0;
   margin: 0;
   background-color: #000000;
+  overflow: hidden;
+  overflow-y: auto;
 }
 body * {
   -webkit-box-sizing: border-box;
@@ -1062,7 +1054,7 @@ body * {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #333333;
+  background-color: #DED4B9;
   overflow: hidden;
 }
 .bcnRT .wrapper .chartContent svg {
@@ -1073,41 +1065,39 @@ body * {
   stroke: #333333;
   stroke-width: 0;
   stroke: #f2f2f2;
-  opacity: 0.5;
-  filter: alpha(opacity=50);
 }
 .bcnRT .wrapper .chartContent svg.svg-sea {
   pointer-events: none;
 }
 .bcnRT .wrapper .chartContent svg.svg-sea .mask-sea {
-  fill: #222222;
+  fill: #000;
 }
 .bcnRT .wrapper .chartContent svg.svg-sea .mask-land {
-  fill: #333333;
+  fill: #46433A;
 }
 .bcnRT .wrapper .chartContent svg.svg-projection {
   pointer-events: none;
 }
 .bcnRT .wrapper .chartContent svg.svg-projection path {
   fill: none;
-  stroke: #f2f2f2;
+  stroke: #46433A;
 }
 .bcnRT .wrapper .chartContent svg.svg-data .bcn-streets {
   fill: none;
-  stroke: #222222;
+  stroke: #000;
 }
 .bcnRT .wrapper .chartContent svg.svg-data .bicing-areas {
   stroke: #333333;
   stroke-width: 0;
   stroke: #f2f2f2;
-  opacity: 0.5;
-  filter: alpha(opacity=50);
+  opacity: 0.4;
+  filter: alpha(opacity=40);
 }
 .bcnRT .wrapper .chartContent svg.svg-data .mask-sea {
-  fill: #222222;
+  fill: #333;
 }
 .bcnRT .wrapper .chartContent svg.svg-data .mask-land {
-  fill: #333333;
+  fill: #46433A;
 }
 .bcnRT .wrapper .zonaInfo {
   position: absolute;
@@ -1249,7 +1239,6 @@ body * {
 .bcnRT .nodes {
   fill: #770;
   /*cursor:pointer;*/
-
   stroke: #000;
   stroke-width: 0.03;
   stroke-opacity: 1.0;
@@ -1345,12 +1334,10 @@ body * {
 .bcnRT .smallLegend {
   font-size: 15px;
   /*fill: #777;*/
-
 }
 .bcnRT .bigLegend {
   font-size: 20px;
   /*fill: #777;*/
-
 }
 .bcnRT a {
   color: #777;

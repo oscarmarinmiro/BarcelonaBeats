@@ -181,6 +181,8 @@ beatsviz.viz.bcnRT = function(options) {
                     self.drawPoints.push(self.projection([+point.geo.info.lng, +point.geo.info.lat]));
                     self.dataPoints.push(point);
 
+                    // console.log(self.dataPoints);
+
                     self.points = self.svgData.selectAll("circle.bicing")
                         .data(self.dataPoints)
                         .enter().append("svg:circle")
@@ -208,11 +210,12 @@ beatsviz.viz.bcnRT = function(options) {
                         })                        
                 }
 
-                if (i == Math.round(self.data.length/2)) {
+                if (i == 508) {
                     renderVoronoi(self.drawPointsBicing, self.valuePointsBicing.values);
                 }
             }
         }
+            //console.log(self.data.length);
 
         if (self.dataIn == 'traffic' || self.dataIn == 'all') {
 
